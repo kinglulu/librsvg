@@ -1,12 +1,2 @@
 Makefile
 Makefile.in
-html
-sgml
-rsvg-decl-list.txt
-rsvg-decl.txt
-rsvg-undocumented.txt
-rsvg-unused.txt
-rsvg.args
-rsvg.hierarchy
-rsvg.signals
-*.stamp
