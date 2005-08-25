@@ -543,6 +543,11 @@ rsvg_start_element (void *data, const xmlChar *name,
 		}
 	else
 		{
+			const xmlChar * tempname;
+			for (tempname = name; *tempname != '\0'; tempname++)
+				if (*tempname == ':')
+					name = tempname + 1;
+
 			if (!strcmp ((char *)name, "text"))
 				rsvg_start_text (ctx, bag);
 			else if (!strcmp ((char *)name, "style"))
@@ -579,6 +584,10 @@ rsvg_end_element (void *data, const xmlChar *name)
 		}
 	else
 		{
+			const xmlChar * tempname;
+			for (tempname = name; *tempname != '\0'; tempname++)
+				if (*tempname == ':')
+					name = tempname + 1;
 			if (ctx->handler != NULL)
 				{
 					ctx->handler->free (ctx->handler);
@@ -618,13 +627,6 @@ rsvg_end_element (void *data, const xmlChar *name)
 		}
 }
 
-static void _rsvg_node_chars_free(RsvgNode * node)
-{
-	RsvgNodeChars * self = (RsvgNodeChars *)node;
-	g_string_free(self->contents, TRUE);
-	_rsvg_node_free(node);
-}
-
 static void
 rsvg_characters (void *data, const xmlChar *ch, int len)
 {
@@ -635,31 +637,6 @@ rsvg_characters (void *data, const xmlChar *ch, int len)
 			ctx->handler->characters (ctx->handler, ch, len);
 			return;
 		}
-	char * utf8 = NULL;
-	RsvgNodeChars * self;
-	GString * string;
-
-	if (!ch || !len)
-		return;
-
-	string = g_string_new_len (ch, len);
-	if (!g_utf8_validate (string->str, -1, NULL))
-		{
-			utf8 = rsvg_make_valid_utf8 (string->str);
-			g_string_free (string, TRUE);
-			string = g_string_new (ch);
-		}
-
-	self = g_new(RsvgNodeChars, 1);
-	_rsvg_node_init(&self->super);
-	self->contents = string;
-
-	self->super.type = RSVG_NODE_CHARS;
-	self->super.free = _rsvg_node_chars_free;
-
-	rsvg_defs_register_memory(ctx->defs, (RsvgNode *)self);
-	if (ctx->currentnode)
-		rsvg_node_group_pack(ctx->currentnode, (RsvgNode *)self);
 }
 
 static xmlEntityPtr
