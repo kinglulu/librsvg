@@ -57,6 +57,9 @@
         <filter id="Color">
             <feBlend mode="color" in2="BackgroundImage" in="SourceGraphic"/>
         </filter>
+        <filter id="Luminosity">
+            <feBlend mode="luminosity" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
     </defs>
 
     <!-- multpiply -->
@@ -190,7 +193,7 @@
         <text x="20" y="0" font-family="verdana" font-size="16" fill="black">luminosity</text>
         <g>
             <use x="30" y="40" xlink:href="#a" />
-            <use x="25" y="35" xlink:href="#b" filter="url(#Color)" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Luminosity)" />
         </g>
     </g>
 </svg>

@@ -724,6 +724,109 @@ struct _RsvgFilterPrimitiveBlend {
     GString *in2;
 };
 
+typedef struct _KingLuluColor KingLuluColor;
+struct _KingLuluColor {
+    double r;
+    double g;
+    double b;
+};
+
+// ## KINGLULU STARTS HERE ##
+double kinglulu_lum(KingLuluColor c)
+{
+    return 0.3 * c.r + 0.59 * c.g + 0.11 * c.b;
+}
+
+KingLuluColor kinglulu_clip_color(KingLuluColor c)
+{
+    double l = kinglulu_lum(c);
+    double n = MIN(MIN(c.r, c.g), c.b);
+    double x = MAX(MAX(c.r, c.g), c.b);
+    if (n < 0.0)
+    {
+        c.r = l + (((c.r - l) * l) / (l - n));
+        c.g = l + (((c.g - l) * l) / (l - n));
+        c.b = l + (((c.b - l) * l) / (l - n));
+    }
+    if (x > 1.0)
+    {
+        c.r = l + (((c.r - l) * (1 - l)) / (x - l));
+        c.g = l + (((c.g - l)  * (1 - l)) / (x - l));
+        c.b = l + (((c.b - l)  * (1 - l)) / (x - l));
+    }
+    return c;
+}
+
+KingLuluColor kinglulu_set_lum(KingLuluColor c, double l)
+{
+    double d = l - kinglulu_lum(c);
+    c.r += d;
+    c.g += d;
+    c.b += d;
+    return kinglulu_clip_color(c);
+}
+
+double kinglulu_sat(KingLuluColor c)
+{
+    return MAX(MAX(c.r, c.g), c.b) - MIN(MIN(c.r, c.g), c.b);
+}
+
+KingLuluColor kinglulu_set_sat(KingLuluColor c, double s)
+{
+    double *min;
+    double *mid;
+    double *max;
+    
+    if (c.r >= c.g && c.r >= c.b)
+    {
+        max = &c.r;
+        if (c.g >= c.b) {
+            mid = &c.g;
+            min = &c.b;
+        }
+        else {
+            mid = &c.b;
+            min = &c.g;
+        }
+    }
+    
+    else if (c.g >= c.b && c.g >= c.r)
+    {
+        max = &c.g;
+        if (c.b >= c.r) {
+            mid = &c.b;
+            min = &c.r;
+        }
+        else {
+            mid = &c.r;
+            min = &c.b;
+        }
+    }
+    
+    else
+    {
+        max = &c.b;
+        if (c.r >= c.g) {
+            mid = &c.r;
+            min = &c.g;
+        }
+        else {
+            mid = &c.g;
+            min = &c.r;
+        }
+    }
+
+    if (*max > *min) {
+        *mid = (((*mid - *min) * s) / (*max - *min));
+        *max = s;        
+    }
+    else
+        *mid = *max = 0.0;
+    *min = 0.0;
+    return c;
+}
+// ## KINGLULU FINISHES HERE ##
+
 static void
 rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf * in2,
                    GdkPixbuf * output, RsvgIRect boundarys, int *channelmap)
@@ -755,92 +858,113 @@ rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf 
 
     for (y = boundarys.y0; y < boundarys.y1; y++)
         for (x = boundarys.x0; x < boundarys.x1; x++) {
-            double qr, cr, qa, qb, ca, cb;
+            double cr, qr, ca, qa, cb, qb;
+            KingLuluColor kr, ka, kb;
             int ch;
             
             qa = (double) in_pixels[4 * x + y * rowstride + channelmap[3]] / 255.0;
             qb = (double) in2_pixels[4 * x + y * rowstride2 + channelmap[3]] / 255.0;
             qr = qa + qb - qa * qb;
             cr = 0;
-            for (ch = 0; ch < 3; ch++) {
-                i = channelmap[ch];
-                ca = (double) in_pixels[4 * x + y * rowstride + i] / 255.0;
-                cb = (double) in2_pixels[4 * x + y * rowstride2 + i] / 255.0;
+            if (mode == hue || mode == saturation || mode == color || mode == luminosity) {
+                ka.r = (double) in_pixels[4 * x + y * rowstride + channelmap[0]] / 255.0;
+                ka.g = (double) in_pixels[4 * x + y * rowstride + channelmap[1]] / 255.0;
+                ka.b = (double) in_pixels[4 * x + y * rowstride + channelmap[2]] / 255.0;
+                
+                kb.r = (double) in2_pixels[4 * x + y * rowstride + channelmap[0]] / 255.0;
+                kb.g = (double) in2_pixels[4 * x + y * rowstride + channelmap[1]] / 255.0;
+                kb.b = (double) in2_pixels[4 * x + y * rowstride + channelmap[2]] / 255.0;
+                
                 switch (mode) {
-                case normal:
-                    cr = (1 - qa) * cb + ca;
-                    break;
-                case multiply:
-                    cr = ca * cb + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case screen:
-                    cr = ca + cb - ca * cb;
-                    break;
-                case darken:
-                    cr = MIN(ca * qb, cb * qa) + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case lighten:
-                    cr = MAX(ca * qb, cb * qa) + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case softlight:
-                    if (ca <= 0.5)
-                        cr = cb - (1 - 2 * ca) * cb * (1 - cb);
-                    else if (cb <= 0.25)
-                        cr = cb + (2 * ca - 1) * ((((16 * cb - 12) * cb + 4) * cb) - cb);
-                    else
-                        cr = cb + (2 * ca - 1) * (sqrt(cb) - cb);
-                    cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case hardlight:
-                    if (2 * ca < qa)
-                        cr = 2 * ca * cb + ca * (1 - qb) + cb * (1 - qa);
-                    else
-                        cr = qa * qb - 2 * (qb - cb) * (qa - ca) + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case colordodge:
-                    if (ca < 1)
-                        cr = MIN(1, cb / (1 - ca));
-                    else
-                        cr = 0;
-                    cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case colorburn:
-                    if (ca > 0)
-                        cr = 1 - MIN(1, (1 - cb) / ca);
-                    else
-                        cr = 1;
-                    cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case overlay:
-                    if (2 * cb < qb)
-                        cr = 2 * ca * cb + ca * (1 - qb) + cb * (1 - qa);
-                    else
-                        cr = qa * qb - 2 * (qb - cb) * (qa - ca) + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case exclusion:
-                    cr = (ca * qb + cb * qa - 2 * ca * cb) + ca * (1 - qb) + cb * (1 - qa);
-                    break;
-                case difference:
-                    cr = ca + cb - 2 * MIN(ca * qb, cb * qa);
-                    break;
                 case hue:
-                    // ...
+                    kr = kinglulu_set_lum(kinglulu_set_sat(ka, kinglulu_sat(kb)), kinglulu_lum(kb));
                     break;
                 case saturation:
-                    // ...
+                    kr = kinglulu_set_lum(kinglulu_set_sat(kb, kinglulu_sat(ka)), kinglulu_lum(kb));
                     break;
                 case color:
-                    // ...
+                    kr = kinglulu_set_lum(ka, kinglulu_lum(kb));
                     break;
                 case luminosity:
-                    // ...
+                    kr = kinglulu_set_lum(kb, kinglulu_lum(ka));
                     break;
-                }
-                cr = CLAMP (cr * 255.0, 0, 255);
-                output_pixels[4 * x + y * rowstrideo + i] = (guchar) cr;
+                }                
+                
+                kr.r = kr.r * qa * qb + ka.r * (1 - qb) + kb.r * (1 - qa);
+                kr.g = kr.g * qa * qb + ka.g * (1 - qb) + kb.g * (1 - qa);
+                kr.b = kr.b * qa * qb + ka.b * (1 - qb) + kb.b * (1 - qa);
+                
+                output_pixels[4 * x + y * rowstride + channelmap[0]] = (guchar) CLAMP(kr.r * 255.0, 0, 255);
+                output_pixels[4 * x + y * rowstride + channelmap[1]] = (guchar) CLAMP(kr.g * 255.0, 0, 255);
+                output_pixels[4 * x + y * rowstride + channelmap[2]] = (guchar) CLAMP(kr.b * 255.0, 0, 255);
             }
-            qr = CLAMP (qr * 255.0, 0, 255);
-            output_pixels[4 * x + y * rowstrideo + channelmap[3]] = qr;
+            else {
+                for (ch = 0; ch < 3; ch++) {
+                    i = channelmap[ch];
+                    ca = (double) in_pixels[4 * x + y * rowstride + i] / 255.0;
+                    cb = (double) in2_pixels[4 * x + y * rowstride2 + i] / 255.0;
+                    switch (mode) {
+                    case normal:
+                        cr = (1 - qa) * cb + ca;
+                        break;
+                    case multiply:
+                        cr = ca * cb + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case screen:
+                        cr = ca + cb - ca * cb;
+                        break;
+                    case darken:
+                        cr = MIN(ca * qb, cb * qa) + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case lighten:
+                        cr = MAX(ca * qb, cb * qa) + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case softlight:
+                        if (ca <= 0.5)
+                            cr = cb - (1 - 2 * ca) * cb * (1 - cb);
+                        else if (cb <= 0.25)
+                            cr = cb + (2 * ca - 1) * ((((16 * cb - 12) * cb + 4) * cb) - cb);
+                        else
+                            cr = cb + (2 * ca - 1) * (sqrt(cb) - cb);
+                        cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case hardlight:
+                        if (2 * ca < qa)
+                            cr = 2 * ca * cb + ca * (1 - qb) + cb * (1 - qa);
+                        else
+                            cr = qa * qb - 2 * (qb - cb) * (qa - ca) + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case colordodge:
+                        if (ca < 1)
+                            cr = MIN(1, cb / (1 - ca));
+                        else
+                            cr = 0;
+                        cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case colorburn:
+                        if (ca > 0)
+                            cr = 1 - MIN(1, (1 - cb) / ca);
+                        else
+                            cr = 1;
+                        cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case overlay:
+                        if (2 * cb < qb)
+                            cr = 2 * ca * cb + ca * (1 - qb) + cb * (1 - qa);
+                        else
+                            cr = qa * qb - 2 * (qb - cb) * (qa - ca) + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case exclusion:
+                        cr = (ca * qb + cb * qa - 2 * ca * cb) + ca * (1 - qb) + cb * (1 - qa);
+                        break;
+                    case difference:
+                        cr = ca + cb - 2 * MIN(ca * qb, cb * qa);
+                        break;
+                    }
+                    output_pixels[4 * x + y * rowstrideo + i] = (guchar) CLAMP(cr * 255.0, 0, 255);
+                }
+            }
+            output_pixels[4 * x + y * rowstrideo + channelmap[3]] = (guchar) CLAMP(qr * 255.0, 0, 255);
         }
 }
 
