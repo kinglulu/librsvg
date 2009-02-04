@@ -416,6 +416,14 @@ rsvg_parse_style_arg (RsvgHandle * ctx, RsvgState * state, const char *str)
             state->adobe_blend = 10;
         else if (!strcmp (str + arg_off, "difference"))
             state->adobe_blend = 11;
+        else if (!strcmp (str + arg_off, "hue"))
+            state->adobe_blend = 12;
+        else if (!strcmp (str + arg_off, "saturation"))
+            state->adobe_blend = 13;
+        else if (!strcmp (str + arg_off, "color"))
+            state->adobe_blend = 14;
+        else if (!strcmp (str + arg_off, "luminosity"))
+            state->adobe_blend = 15;
         else
             state->adobe_blend = 0;
     } else if (rsvg_css_param_match (str, "mask"))

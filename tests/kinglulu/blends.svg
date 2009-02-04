@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 640 640">
+    <defs>
+        <radialGradient id="g1" gradientUnits="objectBoundingBox"
+            cx="0" cy="0" r="1.5">
+            <stop offset="0" stop-color="#ffee00" />
+            <stop offset="1" stop-color="#f80" />
+        </radialGradient>
+        <radialGradient id="g2" gradientUnits="objectBoundingBox"
+            cx="0" cy="0" r="1.5">
+            <stop offset="0" stop-color="#0ef" />
+            <stop offset="1" stop-color="#08f" />
+        </radialGradient>
+
+        <circle id="a" r="30" fill="url(#g1)" stroke="black" />
+        <rect id="b" width="55" height="45" fill="url(#g2)" stroke="black" />
+
+        <filter id="Multiply">
+            <feBlend mode="multiply" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Screen">
+            <feBlend mode="screen" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Overlay">
+            <feBlend mode="overlay" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="HardLight">
+            <feBlend mode="hard-light" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="SoftLight">
+            <feBlend mode="soft-light" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Darken">
+            <feBlend mode="darken" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Lighten">
+            <feBlend mode="lighten" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="ColorDodge">
+            <feBlend mode="color-dodge" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="ColorBurn">
+            <feBlend mode="color-burn" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Exclusion">
+            <feBlend mode="exclusion" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Difference">
+            <feBlend mode="difference" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Saturation">
+            <feBlend mode="saturation" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Hue">
+            <feBlend mode="hue" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+        <filter id="Color">
+            <feBlend mode="color" in2="BackgroundImage" in="SourceGraphic"/>
+        </filter>
+    </defs>
+
+    <!-- multpiply -->
+    <g transform="translate(120, 40)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">multiply</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Multiply)" />
+        </g>
+    </g>
+
+    <!-- screen -->
+    <g transform="translate(220, 40)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">screen</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Screen)" />
+        </g>
+    </g>
+
+    <!-- overlay -->
+    <g transform="translate(320, 40)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">overlay</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Overlay)" />
+        </g>
+    </g>
+
+    <!-- hard-light -->
+    <g transform="translate(420, 40)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">hard-light</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#HardLight)" />
+        </g>
+    </g>
+
+    <!-- soft-light -->
+    <g transform="translate(520, 40)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">soft-light</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#SoftLight)" />
+        </g>
+    </g>
+
+    <!-- lighten -->
+    <g transform="translate(20, 160)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">lighten</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Lighten)" />
+        </g>
+    </g>
+
+    <!-- darken -->
+    <g transform="translate(120, 160)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">darken</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Darken)" />
+        </g>
+    </g>
+    
+    <!-- color-dodge -->
+    <g transform="translate(220, 160)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">color-dodge</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#ColorDodge)" />
+        </g>
+    </g>
+
+    <!-- color-burn -->
+    <g transform="translate(320, 160)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">color-burn</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#ColorBurn)" />
+        </g>
+    </g>
+
+    <!-- exclusion -->
+    <g transform="translate(420, 160)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">exclusion</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Exclusion)" />
+        </g>
+    </g>
+
+    <!-- difference -->
+    <g transform="translate(520, 160)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">difference</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Difference)" />
+        </g>
+    </g>
+
+    <!-- saturation -->
+    <g transform="translate(20, 280)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">saturation</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Saturation)" />
+        </g>
+    </g>
+
+    <!-- hue -->
+    <g transform="translate(120, 280)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">hue</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Hue)" />
+        </g>
+    </g>
+
+    <!-- color -->
+    <g transform="translate(220, 280)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">color</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Color)" />
+        </g>
+    </g>
+
+    <!-- luminosity -->
+    <g transform="translate(320, 280)">
+        <text x="20" y="0" font-family="verdana" font-size="16" fill="black">luminosity</text>
+        <g>
+            <use x="30" y="40" xlink:href="#a" />
+            <use x="25" y="35" xlink:href="#b" filter="url(#Color)" />
+        </g>
+    </g>
+</svg>

@@ -714,7 +714,7 @@ rsvg_new_filter (void)
 typedef enum {
     normal, multiply, screen, darken, lighten, softlight,
     hardlight, colordodge, colorburn, overlay, exclusion,
-    difference
+    difference, hue, saturation, color, luminosity
 } RsvgFilterPrimitiveBlendMode;
 
 typedef struct _RsvgFilterPrimitiveBlend RsvgFilterPrimitiveBlend;
@@ -755,82 +755,92 @@ rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf 
 
     for (y = boundarys.y0; y < boundarys.y1; y++)
         for (x = boundarys.x0; x < boundarys.x1; x++) {
-            double qr, cr, qa, qb, ca, cb, bca, bcb;
+            double qr, cr, qa, qb, ca, cb;
             int ch;
-
+            
             qa = (double) in_pixels[4 * x + y * rowstride + channelmap[3]] / 255.0;
             qb = (double) in2_pixels[4 * x + y * rowstride2 + channelmap[3]] / 255.0;
-            qr = 1 - (1 - qa) * (1 - qb);
+            qr = qa + qb - qa * qb;
             cr = 0;
             for (ch = 0; ch < 3; ch++) {
                 i = channelmap[ch];
                 ca = (double) in_pixels[4 * x + y * rowstride + i] / 255.0;
                 cb = (double) in2_pixels[4 * x + y * rowstride2 + i] / 255.0;
-                /*these are the ca and cb that are used in the non-standard blend functions */
-                bcb = (1 - qa) * cb + ca;
-                bca = (1 - qb) * ca + cb;
                 switch (mode) {
                 case normal:
                     cr = (1 - qa) * cb + ca;
                     break;
                 case multiply:
-                    cr = (1 - qa) * cb + (1 - qb) * ca + ca * cb;
+                    cr = ca * cb + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case screen:
-                    cr = cb + ca - ca * cb;
+                    cr = ca + cb - ca * cb;
                     break;
                 case darken:
-                    cr = MIN ((1 - qa) * cb + ca, (1 - qb) * ca + cb);
+                    cr = MIN(ca * qb, cb * qa) + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case lighten:
-                    cr = MAX ((1 - qa) * cb + ca, (1 - qb) * ca + cb);
+                    cr = MAX(ca * qb, cb * qa) + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case softlight:
-                    if (bcb < 0.5)
-                        cr = 2 * bca * bcb + bca * bca * (1 - 2 * bcb);
+                    if (ca <= 0.5)
+                        cr = cb - (1 - 2 * ca) * cb * (1 - cb);
+                    else if (cb <= 0.25)
+                        cr = cb + (2 * ca - 1) * ((((16 * cb - 12) * cb + 4) * cb) - cb);
                     else
-                        cr = sqrt (bca) * (2 * bcb - 1) + (2 * bca) * (1 - bcb);
+                        cr = cb + (2 * ca - 1) * (sqrt(cb) - cb);
+                    cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case hardlight:
-                    if (cb < 0.5)
-                        cr = 2 * bca * bcb;
+                    if (2 * ca < qa)
+                        cr = 2 * ca * cb + ca * (1 - qb) + cb * (1 - qa);
                     else
-                        cr = 1 - 2 * (1 - bca) * (1 - bcb);
+                        cr = qa * qb - 2 * (qb - cb) * (qa - ca) + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case colordodge:
-                    if (bcb == 1)
-                        cr = 1;
+                    if (ca < 1)
+                        cr = MIN(1, cb / (1 - ca));
                     else
-                        cr = MIN (bca / (1 - bcb), 1);
+                        cr = 0;
+                    cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case colorburn:
-                    if (bcb == 0)
-                        cr = 0;
+                    if (ca > 0)
+                        cr = 1 - MIN(1, (1 - cb) / ca);
                     else
-                        cr = MAX (1 - (1 - bca) / bcb, 0);
+                        cr = 1;
+                    cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case overlay:
-                    if (bca < 0.5)
-                        cr = 2 * bca * bcb;
+                    if (2 * cb < qb)
+                        cr = 2 * ca * cb + ca * (1 - qb) + cb * (1 - qa);
                     else
-                        cr = 1 - 2 * (1 - bca) * (1 - bcb);
+                        cr = qa * qb - 2 * (qb - cb) * (qa - ca) + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case exclusion:
-                    cr = bca + bcb - 2 * bca * bcb;
+                    cr = (ca * qb + cb * qa - 2 * ca * cb) + ca * (1 - qb) + cb * (1 - qa);
                     break;
                 case difference:
-                    cr = abs (bca - bcb);
+                    cr = ca + cb - 2 * MIN(ca * qb, cb * qa);
+                    break;
+                case hue:
+                    // ...
+                    break;
+                case saturation:
+                    // ...
+                    break;
+                case color:
+                    // ...
+                    break;
+                case luminosity:
+                    // ...
                     break;
                 }
-                cr *= 255.0;
-                if (cr > 255)
-                    cr = 255;
-                if (cr < 0)
-                    cr = 0;
+                cr = CLAMP (cr * 255.0, 0, 255);
                 output_pixels[4 * x + y * rowstrideo + i] = (guchar) cr;
-
             }
-            output_pixels[4 * x + y * rowstrideo + channelmap[3]] = qr * 255.0;
+            qr = CLAMP (qr * 255.0, 0, 255);
+            output_pixels[4 * x + y * rowstrideo + channelmap[3]] = qr;
         }
 }
 
@@ -910,6 +920,18 @@ rsvg_filter_adobe_blend (gint modenum, GdkPixbuf * in, GdkPixbuf * bg, GdkPixbuf
     case 11:
         mode = difference;
         break;
+    case 12:
+        mode = hue;
+        break;
+    case 13:
+        mode = saturation;
+        break;
+    case 14:
+        mode = color;
+        break;
+    case 15:
+        mode = luminosity;
+        break;
     }
 
     rsvg_filter_blend (mode, in, bg, output, boundarys, standardmap);
@@ -944,6 +966,28 @@ rsvg_filter_primitive_blend_set_atts (RsvgNode * node, RsvgHandle * ctx, RsvgPro
                 filter->mode = darken;
             else if (!strcmp (value, "lighten"))
                 filter->mode = lighten;
+            else if (!strcmp (value, "soft-light"))
+                filter->mode = softlight;
+            else if (!strcmp (value, "hard-light"))
+                filter->mode = hardlight;
+            else if (!strcmp (value, "color-dodge"))
+                filter->mode = colordodge;
+            else if (!strcmp (value, "color-burn"))
+                filter->mode = colorburn;
+            else if (!strcmp (value, "overlay"))
+                filter->mode = overlay;
+            else if (!strcmp (value, "exclusion"))
+                filter->mode = exclusion;
+            else if (!strcmp (value, "difference"))
+                filter->mode = difference;
+            else if (!strcmp (value, "hue"))
+                filter->mode = hue;
+            else if (!strcmp (value, "saturation"))
+                filter->mode = saturation;
+            else if (!strcmp (value, "color"))
+                filter->mode = color;
+            else if (!strcmp (value, "luminosity"))
+                filter->mode = luminosity;
             else
                 filter->mode = normal;
         }
