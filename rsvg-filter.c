@@ -935,17 +935,17 @@ rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf 
                             cr = qa * qb - 2 * (qb - cb) * (qa - ca) + ca * (1 - qb) + cb * (1 - qa);
                         break;
                     case colordodge:
-                        if (ca < 1)
+                        if (ca < 1.0)
                             cr = MIN(1, cb / (1 - ca));
                         else
-                            cr = 0;
+                            cr = 1;
                         cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
                         break;
                     case colorburn:
-                        if (ca > 0)
+                        if (ca > 0.0)
                             cr = 1 - MIN(1, (1 - cb) / ca);
                         else
-                            cr = 1;
+                            cr = 0;
                         cr = cr * qa * qb + ca * (1 - qb) + cb * (1 - qa);
                         break;
                     case overlay:
