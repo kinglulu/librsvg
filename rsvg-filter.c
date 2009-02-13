@@ -940,7 +940,7 @@ rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf 
                     case hardlight:
                         if (cs <= 0.5)
                             cr = 2 * cs * cb;
-                        if (cs > 0.5)
+                        else
                             cr = (2 * cs - 1) + cb - ((2 * cs - 1) * cb);
                         break;
                     case colordodge:
@@ -952,11 +952,10 @@ rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf 
                             cr = MIN(1, cb / (1 - cs));
                         break;
                     case colorburn:
-                        if (cs == 0.0) {
+                        if (cs == 0.0)
                             // Got that by trying random things and it seems to be what Illustrator is doing.
                             // It's however not in the PDF specs. Specs says: if (cs == 0) { cr = 0; }
                             cr = (cb == 1.0) ? 1 : 0;
-                        }
                         else
                             cr = 1.0 - MIN(1.0, ((1 - cb) / cs));
                         break;
