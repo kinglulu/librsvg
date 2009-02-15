@@ -732,103 +732,82 @@ struct _KingLuluColor {
 };
 
 // ## KINGLULU STARTS HERE ##
-double kinglulu_lum(KingLuluColor c);
-KingLuluColor kinglulu_clip_color(KingLuluColor c);
 KingLuluColor kinglulu_set_lum(KingLuluColor c, double l);
-double kinglulu_sat(KingLuluColor c);
 KingLuluColor kinglulu_set_sat(KingLuluColor c, double s);
+int kinglulu_color_cmp(const void *a, const void *b);
 
-double kinglulu_lum(KingLuluColor c)
-{
-    return 0.3 * c.r + 0.59 * c.g + 0.11 * c.b;
-}
+#define KINGLULU_DARKEN(cb, cs) MIN(cb, cs)
+#define KINGLULU_MULTIPLY(cb, cs) (cb * cs)
+// Got this COLOR BURN formula by trying random things and it seems to be what Illustrator is doing.
+// It's however not in the PDF specs. Specs says: if (cs == 0) { cr = 0; }
+#define KINGLULU_COLOR_BURN(cb, cs) (cs == 0.0 ? (cb == 1.0 ? 1 : 0) : 1.0 - MIN(1.0, (1 - cb) / cs))
 
-KingLuluColor kinglulu_clip_color(KingLuluColor c)
+#define KINGLULU_LIGHTEN(cb, cs) MAX(cb, cs)
+#define KINGLULU_SCREEN(cb, cs) (cb + cs - cb * cs)
+// Got this COLOR DODGE formula by trying random things and it seems to be what Illustrator is doing.
+// It's however not in the PDF specs. Specs says: if (cs == 1) { cr = 1; }
+#define KINGLULU_COLOR_DODGE(cb, cs) (cs == 1.0 ? (cb == 1.0 ? 1 : 0) : MIN(1, cb / (1 - cs)))
+
+#define KINGLULU_HARDLIGHT(cb, cs) (cs <= 0.5 ? KINGLULU_MULTIPLY(cb, 2 * cs) : KINGLULU_SCREEN(cb, (2 * cs - 1)))
+#define KINGLULU_OVERLAY(cb, cs) KINGLULU_HARDLIGHT(cs, cb)
+#define KINGLULU_SOFTLIGHT(cb, cs) (cs <= 0.5 ? cb - (1 - 2 * cs) * cb * (1 - cb) : (cb <= 0.25 ? cb + (2 * cs - 1) * ((((16 * cb - 12) * cb + 4) * cb) - cb) : cb + (2 * cs - 1) * (sqrt(cb) - cb)))
+
+#define KINGLULU_EXCLUSION(cb, cs) (cs + cb - 2 * cs * cb)
+#define KINGLULU_DIFFERENCE(cb, cs) fabs(cb - cs)
+
+#define KINGLULU_HUE(cb, cs) kinglulu_set_lum(kinglulu_set_sat(cs, KINGLULU_SAT(cb)), KINGLULU_LUM(cb))
+#define KINGLULU_SATURATION(cb, cs) kinglulu_set_lum(kinglulu_set_sat(cb, KINGLULU_SAT(cs)), KINGLULU_LUM(cb))
+#define KINGLULU_COLOR(cb, cs) kinglulu_set_lum(cs, KINGLULU_LUM(cb))
+#define KINGLULU_LUMINOSITY(cb, cs) kinglulu_set_lum(cb, KINGLULU_LUM(cs))
+
+#define KINGLULU_LUM(c) (0.3 * c.r + 0.59 * c.g + 0.11 * c.b)
+#define KINGLULU_SAT(c) MAX(MAX(c.r, c.g), c.b) - MIN(MIN(c.r, c.g), c.b)
+
+KingLuluColor
+kinglulu_set_lum(KingLuluColor c, double l)
 {
-    double l = kinglulu_lum(c);
+    double lc = KINGLULU_LUM(c);
+    double d = l - lc;
+    c.r += d;
+    c.g += d;
+    c.b += d;
+
     double n = MIN(MIN(c.r, c.g), c.b);
     double x = MAX(MAX(c.r, c.g), c.b);
     if (n < 0.0)
     {
-        c.r = l + (((c.r - l) * l) / (l - n));
-        c.g = l + (((c.g - l) * l) / (l - n));
-        c.b = l + (((c.b - l) * l) / (l - n));
+        c.r = lc + (((c.r - lc) * lc) / (lc - n));
+        c.g = lc + (((c.g - lc) * lc) / (lc - n));
+        c.b = lc + (((c.b - lc) * lc) / (lc - n));
     }
     if (x > 1.0)
     {
-        c.r = l + (((c.r - l) * (1 - l)) / (x - l));
-        c.g = l + (((c.g - l)  * (1 - l)) / (x - l));
-        c.b = l + (((c.b - l)  * (1 - l)) / (x - l));
+        c.r = lc + (((c.r - lc) * (1 - lc)) / (x - lc));
+        c.g = lc + (((c.g - lc)  * (1 - lc)) / (x - lc));
+        c.b = lc + (((c.b - lc)  * (1 - lc)) / (x - lc));
     }
     return c;
 }
 
-KingLuluColor kinglulu_set_lum(KingLuluColor c, double l)
+int
+kinglulu_color_cmp(const void *a, const void *b)
 {
-    double d = l - kinglulu_lum(c);
-    c.r += d;
-    c.g += d;
-    c.b += d;
-    return kinglulu_clip_color(c);
+  return (**(const double **)a > **(const double **)b) - (**(const double **)a < **(const double **)b);
 }
 
-double kinglulu_sat(KingLuluColor c)
+KingLuluColor
+kinglulu_set_sat(KingLuluColor c, double s)
 {
-    return MAX(MAX(c.r, c.g), c.b) - MIN(MIN(c.r, c.g), c.b);
-}
-
-KingLuluColor kinglulu_set_sat(KingLuluColor c, double s)
-{
-    double *min;
-    double *mid;
-    double *max;
-    
-    if (c.r >= c.g && c.r >= c.b)
-    {
-        max = &c.r;
-        if (c.g >= c.b) {
-            mid = &c.g;
-            min = &c.b;
-        }
-        else {
-            mid = &c.b;
-            min = &c.g;
-        }
-    }
-    
-    else if (c.g >= c.b && c.g >= c.r)
-    {
-        max = &c.g;
-        if (c.b >= c.r) {
-            mid = &c.b;
-            min = &c.r;
-        }
-        else {
-            mid = &c.r;
-            min = &c.b;
-        }
-    }
-    
-    else
-    {
-        max = &c.b;
-        if (c.r >= c.g) {
-            mid = &c.r;
-            min = &c.g;
-        }
-        else {
-            mid = &c.g;
-            min = &c.r;
-        }
-    }
-
-    if (*max > *min) {
-        *mid = (((*mid - *min) * s) / (*max - *min));
-        *max = s;        
+    double *components[3] = {&c.r, &c.g, &c.b};
+    qsort(components, 3, sizeof(components[0]), kinglulu_color_cmp);
+    if (*components[2] > *components[0]) {
+        *components[1] = (((*components[1] - *components[0]) * s) / (*components[2] - *components[0]));
+        *components[2] = s;
     }
     else
-        *mid = *max = 0.0;
-    *min = 0.0;
+        *components[1] = *components[2] = 0.0;
+    *components[0] = 0.0;
+
     return c;
 }
 
@@ -858,128 +837,113 @@ rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf 
         boundarys.x0 = 0;
     if (boundarys.y0 < 0)
         boundarys.y1 = 0;
-    if (boundarys.x1 >= width)
+    if (boundarys.x1 > width)
         boundarys.x1 = width;
-    if (boundarys.y1 >= height)
+    if (boundarys.y1 > height)
         boundarys.y1 = height;
-
+    
     for (y = boundarys.y0; y < boundarys.y1; y++)
         for (x = boundarys.x0; x < boundarys.x1; x++) {
-            double cr, qr, cs, qs, cb, qb;
-            KingLuluColor kr, ks, kb;
-            int ch;
-            
+            double qs, qb, qr;
+
             qs = (double) in_pixels[4 * x + y * rowstride + channelmap[3]] / 255.0;
             qb = (double) in2_pixels[4 * x + y * rowstride2 + channelmap[3]] / 255.0;
             qr = qs + qb - qs * qb;
-            cr = 0;
-            if (mode == hue || mode == saturation || mode == color || mode == luminosity) {
-                ks.r = (double) in_pixels[4 * x + y * rowstride + channelmap[0]] / 255.0;
-                ks.g = (double) in_pixels[4 * x + y * rowstride + channelmap[1]] / 255.0;
-                ks.b = (double) in_pixels[4 * x + y * rowstride + channelmap[2]] / 255.0;
+            
+            // Separable blend modes
+            if (mode < hue) {
+                double cs, cb, cr;
+                int ch;
                 
-                kb.r = (double) in2_pixels[4 * x + y * rowstride + channelmap[0]] / 255.0;
-                kb.g = (double) in2_pixels[4 * x + y * rowstride + channelmap[1]] / 255.0;
-                kb.b = (double) in2_pixels[4 * x + y * rowstride + channelmap[2]] / 255.0;
-                
-                switch (mode) {
-                default:
-                    kr = ks;
-                    break;
-                case hue:
-                    kr = kinglulu_set_lum(kinglulu_set_sat(ks, kinglulu_sat(kb)), kinglulu_lum(kb));
-                    break;
-                case saturation:
-                    kr = kinglulu_set_lum(kinglulu_set_sat(kb, kinglulu_sat(ks)), kinglulu_lum(kb));
-                    break;
-                case color:
-                    kr = kinglulu_set_lum(ks, kinglulu_lum(kb));
-                    break;
-                case luminosity:
-                    kr = kinglulu_set_lum(kb, kinglulu_lum(ks));
-                    break;
-                }                
-                
-                kr.r = kr.r * qs * qb + ks.r * (1 - qb) + kb.r * (1 - qs);
-                kr.g = kr.g * qs * qb + ks.g * (1 - qb) + kb.g * (1 - qs);
-                kr.b = kr.b * qs * qb + ks.b * (1 - qb) + kb.b * (1 - qs);
-                
-                output_pixels[4 * x + y * rowstride + channelmap[0]] = (guchar) CLAMP(kr.r * 255.0, 0, 255);
-                output_pixels[4 * x + y * rowstride + channelmap[1]] = (guchar) CLAMP(kr.g * 255.0, 0, 255);
-                output_pixels[4 * x + y * rowstride + channelmap[2]] = (guchar) CLAMP(kr.b * 255.0, 0, 255);
-            }
-            else {
                 for (ch = 0; ch < 3; ch++) {
                     i = channelmap[ch];
                     cs = (double) in_pixels[4 * x + y * rowstride + i] / 255.0;
                     cb = (double) in2_pixels[4 * x + y * rowstride2 + i] / 255.0;
                     switch (mode) {
-                    default:
-                        cr = cs;
-                        break;
                     case multiply:
-                        cr = cs * cb;
+                        cr = KINGLULU_MULTIPLY(cb, cs);
                         break;
                     case screen:
-                        cr = cs + cb - (cs * cb);
+                        cr = KINGLULU_SCREEN(cb, cs);
                         break;
                     case darken:
-                        cr = MIN(cs, cb);
+                        cr = KINGLULU_DARKEN(cb, cs);
                         break;
                     case lighten:
-                        cr = MAX(cs, cb);
+                        cr = KINGLULU_LIGHTEN(cb, cs);
                         break;
                     case softlight:
-                        if (cs <= 0.5)
-                            cr = cb - (1 - 2 * cs) * cb * (1 - cb);
-                        else if (cb <= 0.25)
-                            cr = cb + (2 * cs - 1) * ((((16 * cb - 12) * cb + 4) * cb) - cb);
-                        else
-                            cr = cb + (2 * cs - 1) * (sqrt(cb) - cb);
+                        cr = KINGLULU_SOFTLIGHT(cb, cs);
                         break;
                     case hardlight:
-                        if (cs <= 0.5)
-                            cr = 2 * cs * cb;
-                        else
-                            cr = (2 * cs - 1) + cb - ((2 * cs - 1) * cb);
+                        cr = KINGLULU_HARDLIGHT(cb, cs);
                         break;
                     case colordodge:
-                        if (cs == 1.0)
-                            // Got that by trying random things and it seems to be what Illustrator is doing.
-                            // It's however not in the PDF specs. Specs says: if (cs == 1) { cr = 1; }
-                            cr = (cb == 0.0) ? 0 : 1;
-                        else
-                            cr = MIN(1, cb / (1 - cs));
+                        cr = KINGLULU_COLOR_DODGE(cb, cs);
                         break;
                     case colorburn:
-                        if (cs == 0.0)
-                            // Got that by trying random things and it seems to be what Illustrator is doing.
-                            // It's however not in the PDF specs. Specs says: if (cs == 0) { cr = 0; }
-                            cr = (cb == 1.0) ? 1 : 0;
-                        else
-                            cr = 1.0 - MIN(1.0, ((1 - cb) / cs));
+                        cr = KINGLULU_COLOR_BURN(cb, cs);
                         break;
                     case overlay:
-                        if (cb <= 0.5)
-                            cr = 2 * cs * cb;
-                        else
-                            cr = (2 * cb - 1) + cs - ((2 * cb - 1) * cs);
+                        cr = KINGLULU_OVERLAY(cb, cs);
                         break;
                     case exclusion:
-                        cr = cs + cb - 2 * cs * cb;
+                        cr = KINGLULU_EXCLUSION(cb, cs);
                         break;
                     case difference:
-                        cr = fabs(cb - cs);
+                        cr = KINGLULU_DIFFERENCE(cb, cs);
+                        break;
+                    default:
+                        cr = cs;
                         break;
                     }
                     cr = cr * qs * qb + cs * (1 - qb) + cb * (1 - qs);
                     output_pixels[4 * x + y * rowstrideo + i] = (guchar) CLAMP(cr * 255.0, 0, 255);
                 }
             }
+            
+            // Non-separable blend modes
+            else {
+                KingLuluColor cr, cs, cb;
+                
+                cs.r = (double) in_pixels[4 * x + y * rowstride + channelmap[0]] / 255.0;
+                cs.g = (double) in_pixels[4 * x + y * rowstride + channelmap[1]] / 255.0;
+                cs.b = (double) in_pixels[4 * x + y * rowstride + channelmap[2]] / 255.0;
+                
+                cb.r = (double) in2_pixels[4 * x + y * rowstride + channelmap[0]] / 255.0;
+                cb.g = (double) in2_pixels[4 * x + y * rowstride + channelmap[1]] / 255.0;
+                cb.b = (double) in2_pixels[4 * x + y * rowstride + channelmap[2]] / 255.0;
+                
+                switch (mode) {
+                case hue:
+                    cr = KINGLULU_HUE(cb, cs);
+                    break;
+                case saturation:
+                    cr = KINGLULU_SATURATION(cb, cs);
+                    break;
+                case color:
+                    cr = KINGLULU_COLOR(cb, cs);
+                    break;
+                case luminosity:
+                    cr = KINGLULU_LUMINOSITY(cb, cs);
+                    break;
+                default:
+                    cr = cs;
+                    break;
+                }
+                
+                cr.r = cr.r * qs * qb + cs.r * (1 - qb) + cb.r * (1 - qs);
+                cr.g = cr.g * qs * qb + cs.g * (1 - qb) + cb.g * (1 - qs);
+                cr.b = cr.b * qs * qb + cs.b * (1 - qb) + cb.b * (1 - qs);
+                
+                output_pixels[4 * x + y * rowstride + channelmap[0]] = (guchar) CLAMP(cr.r * 255.0, 0, 255);
+                output_pixels[4 * x + y * rowstride + channelmap[1]] = (guchar) CLAMP(cr.g * 255.0, 0, 255);
+                output_pixels[4 * x + y * rowstride + channelmap[2]] = (guchar) CLAMP(cr.b * 255.0, 0, 255);
+            }
+                        
             output_pixels[4 * x + y * rowstrideo + channelmap[3]] = (guchar) CLAMP(qr * 255.0, 0, 255);
         }
 }
-
 
 static void
 rsvg_filter_primitive_blend_render (RsvgFilterPrimitive * self, RsvgFilterContext * ctx)
