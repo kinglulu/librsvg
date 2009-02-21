@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/" xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg" xmlns:kll="http://www.kinglulu.com/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" version="1.1" id="Layer_1" x="0px" y="0px" width="800px" height="1000px" viewBox="0 0 800 1000" style="enable-background:new 0 0 800 1000;" xml:space="preserve" suggestTransform="scale(0.187500)" suggestWidth="150" suggestHeight="150" suggestViewBox="0 100 150 150">
+<kll:version>090222.004126</kll:version><desc>blend-spectrum-white</desc><title>blend-spectrum-white</title><defs><filter id="colorDodge"><feBlend mode="color-dodge" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="hue"><feBlend mode="hue" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="saturation"><feBlend mode="saturation" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="darken"><feBlend mode="darken" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="exclusion"><feBlend mode="exclusion" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="overlay"><feBlend mode="overlay" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="color"><feBlend mode="color" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="luminosity"><feBlend mode="luminosity" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="lighten"><feBlend mode="lighten" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="softLight"><feBlend mode="soft-light" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="colorBurn"><feBlend mode="color-burn" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="hardLight"><feBlend mode="hard-light" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="multiply"><feBlend mode="multiply" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="difference"><feBlend mode="difference" in2="BackgroundImage" in="SourceGraphic"/></filter><filter id="screen"><feBlend mode="screen" in2="BackgroundImage" in="SourceGraphic"/></filter></defs><g>
+	
+		<linearGradient id="rect2383_30_" gradientUnits="userSpaceOnUse" x1="208.0967" y1="169.2471" x2="361.7347" y2="169.2471" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383" style="fill:url(#rect2383_30_);" width="200" height="200"/>
+	<g id="rect2383_1_" style="filter:url(#darken);">
+		<rect style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_31_" gradientUnits="userSpaceOnUse" x1="360.7334" y1="169.2471" x2="514.3714" y2="169.2471" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_3_" x="200" style="fill:url(#rect2383_31_);" width="200" height="200"/>
+	<g id="rect2383_2_" style="filter:url(#multiply);">
+		<rect x="200" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_32_" gradientUnits="userSpaceOnUse" x1="513.3701" y1="169.2471" x2="667.0081" y2="169.2471" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_5_" x="400" style="fill:url(#rect2383_32_);" width="200" height="200"/>
+	<g id="rect2383_4_" style="filter:url(#colorBurn);">
+		<rect x="400" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_33_" gradientUnits="userSpaceOnUse" x1="208.0967" y1="-420.0283" x2="361.7347" y2="-420.0283" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_11_" y="200" style="fill:url(#rect2383_33_);" width="200" height="200"/>
+	<g id="rect2383_10_" style="filter:url(#lighten);">
+		<rect y="200" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_34_" gradientUnits="userSpaceOnUse" x1="360.7334" y1="-420.0283" x2="514.3714" y2="-420.0283" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_9_" x="200" y="200" style="fill:url(#rect2383_34_);" width="200" height="200"/>
+	<g id="rect2383_8_" style="filter:url(#screen);">
+		<rect x="200" y="200" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_35_" gradientUnits="userSpaceOnUse" x1="513.3701" y1="-420.0283" x2="667.0081" y2="-420.0283" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_7_" x="400" y="200" style="fill:url(#rect2383_35_);" width="200" height="200"/>
+	<g id="rect2383_6_" style="filter:url(#colorDodge);">
+		<rect x="400" y="200" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_36_" gradientUnits="userSpaceOnUse" x1="208.0967" y1="-1009.3037" x2="361.7347" y2="-1009.3037" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_17_" y="400" style="fill:url(#rect2383_36_);" width="200" height="200"/>
+	<g id="rect2383_16_" style="filter:url(#overlay);">
+		<rect y="400" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_37_" gradientUnits="userSpaceOnUse" x1="360.7334" y1="-1009.3037" x2="514.3714" y2="-1009.3037" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_15_" x="200" y="400" style="fill:url(#rect2383_37_);" width="200" height="200"/>
+	<g id="rect2383_14_" style="filter:url(#softLight);">
+		<rect x="200" y="400" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_38_" gradientUnits="userSpaceOnUse" x1="513.3701" y1="-1009.3037" x2="667.0081" y2="-1009.3037" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_13_" x="400" y="400" style="fill:url(#rect2383_38_);" width="200" height="200"/>
+	<g id="rect2383_12_" style="filter:url(#hardLight);">
+		<rect x="400" y="400" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_39_" gradientUnits="userSpaceOnUse" x1="208.0967" y1="-1598.5791" x2="361.7347" y2="-1598.5791" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_23_" y="600" style="fill:url(#rect2383_39_);" width="200" height="200"/>
+	<g id="rect2383_22_" style="filter:url(#difference);">
+		<rect y="600" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_40_" gradientUnits="userSpaceOnUse" x1="360.7334" y1="-1598.5791" x2="514.3714" y2="-1598.5791" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_21_" x="200" y="600" style="fill:url(#rect2383_40_);" width="200" height="200"/>
+	<g id="rect2383_20_" style="filter:url(#exclusion);">
+		<rect x="200" y="600" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_41_" gradientUnits="userSpaceOnUse" x1="208.0967" y1="-2187.8545" x2="361.7347" y2="-2187.8545" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_29_" y="800" style="fill:url(#rect2383_41_);" width="200" height="200"/>
+	<g id="rect2383_28_" style="filter:url(#hue);">
+		<rect y="800" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_42_" gradientUnits="userSpaceOnUse" x1="360.7334" y1="-2187.8545" x2="514.3714" y2="-2187.8545" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_27_" x="200" y="800" style="fill:url(#rect2383_42_);" width="200" height="200"/>
+	<g id="rect2383_26_" style="filter:url(#saturation);">
+		<rect x="200" y="800" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_43_" gradientUnits="userSpaceOnUse" x1="513.3701" y1="-2187.8545" x2="667.0081" y2="-2187.8545" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_25_" x="400" y="800" style="fill:url(#rect2383_43_);" width="200" height="200"/>
+	<g id="rect2383_24_" style="filter:url(#color);">
+		<rect x="400" y="800" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+<g>
+	
+		<linearGradient id="rect2383_44_" gradientUnits="userSpaceOnUse" x1="666.0068" y1="-2187.8545" x2="819.6448" y2="-2187.8545" gradientTransform="matrix(1.3103 0 0 -0.3394 -273.3252 157.442)">
+		<stop offset="0" style="stop-color:#000000"/>
+		<stop offset="0.08" style="stop-color:#400076"/>
+		<stop offset="0.28" style="stop-color:#0000FF"/>
+		<stop offset="0.49" style="stop-color:#00FF00"/>
+		<stop offset="0.63" style="stop-color:#FFFF00"/>
+		<stop offset="0.68" style="stop-color:#FF7F00"/>
+		<stop offset="0.79" style="stop-color:#FF0400"/>
+		<stop offset="1" style="stop-color:#000000"/>
+		<a:midPointStop offset="0" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.5" style="stop-color:#000000"/>
+		<a:midPointStop offset="0.08" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.5" style="stop-color:#400076"/>
+		<a:midPointStop offset="0.28" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.5" style="stop-color:#0000FF"/>
+		<a:midPointStop offset="0.49" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#00FF00"/>
+		<a:midPointStop offset="0.63" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FFFF00"/>
+		<a:midPointStop offset="0.68" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF7F00"/>
+		<a:midPointStop offset="0.79" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="0.5" style="stop-color:#FF0400"/>
+		<a:midPointStop offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect id="rect2383_19_" x="600" y="800" style="fill:url(#rect2383_44_);" width="200" height="200"/>
+	<g id="rect2383_18_" style="filter:url(#luminosity);">
+		<rect x="600" y="800" style="fill:#FFFFFF;adobe-blending-mode:normal;" width="200" height="200"/>
+	</g>
+</g>
+</svg>
