@@ -724,6 +724,7 @@ struct _RsvgFilterPrimitiveBlend {
     GString *in2;
 };
 
+// ## KINGLULU STARTS HERE ##
 typedef struct _KingLuluColor KingLuluColor;
 struct _KingLuluColor {
     double r;
@@ -731,7 +732,6 @@ struct _KingLuluColor {
     double b;
 };
 
-// ## KINGLULU STARTS HERE ##
 KingLuluColor kinglulu_set_lum(KingLuluColor c, double l);
 KingLuluColor kinglulu_set_sat(KingLuluColor c, double s);
 int kinglulu_color_cmp(const void *a, const void *b);
@@ -810,7 +810,6 @@ kinglulu_set_sat(KingLuluColor c, double s)
 
     return c;
 }
-
 // ## KINGLULU FINISHES HERE ##
 
 static void
@@ -898,7 +897,7 @@ rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf 
                         break;
                     }
                     cr = cr * qs * qb + cs * (1 - qb) + cb * (1 - qs);
-                    output_pixels[4 * x + y * rowstrideo + i] = (guchar) CLAMP(cr * 255.0, 0, 255);
+                    output_pixels[4 * x + y * rowstrideo + i] = (guchar) CLAMP(cr * 255, 0, 255);
                 }
             }
             
@@ -936,12 +935,12 @@ rsvg_filter_blend (RsvgFilterPrimitiveBlendMode mode, GdkPixbuf * in, GdkPixbuf 
                 cr.g = cr.g * qs * qb + cs.g * (1 - qb) + cb.g * (1 - qs);
                 cr.b = cr.b * qs * qb + cs.b * (1 - qb) + cb.b * (1 - qs);
                 
-                output_pixels[4 * x + y * rowstride + channelmap[0]] = (guchar) CLAMP(cr.r * 255.0, 0, 255);
-                output_pixels[4 * x + y * rowstride + channelmap[1]] = (guchar) CLAMP(cr.g * 255.0, 0, 255);
-                output_pixels[4 * x + y * rowstride + channelmap[2]] = (guchar) CLAMP(cr.b * 255.0, 0, 255);
+                output_pixels[4 * x + y * rowstride + channelmap[0]] = (guchar) CLAMP(cr.r * 255, 0, 255);
+                output_pixels[4 * x + y * rowstride + channelmap[1]] = (guchar) CLAMP(cr.g * 255, 0, 255);
+                output_pixels[4 * x + y * rowstride + channelmap[2]] = (guchar) CLAMP(cr.b * 255, 0, 255);
             }
                         
-            output_pixels[4 * x + y * rowstrideo + channelmap[3]] = (guchar) CLAMP(qr * 255.0, 0, 255);
+            output_pixels[4 * x + y * rowstrideo + channelmap[3]] = (guchar) CLAMP(qr * 255, 0, 255);
         }
 }
 
