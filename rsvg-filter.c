@@ -746,7 +746,7 @@ int kinglulu_color_cmp(const void *a, const void *b);
 #define KINGLULU_SCREEN(cb, cs) (cb + cs - cb * cs)
 // Got this COLOR DODGE formula by trying random things and it seems to be what Illustrator is doing.
 // It's however not in the PDF specs. Specs says: if (cs == 1) { cr = 1; }
-#define KINGLULU_COLOR_DODGE(cb, cs) (cs == 1.0 ? (cb == 1.0 ? 1 : 0) : MIN(1, cb / (1 - cs)))
+#define KINGLULU_COLOR_DODGE(cb, cs) (cs == 1.0 ? (cb == 0.0 ? 0 : 1) : MIN(1, cb / (1 - cs)))
 
 #define KINGLULU_HARDLIGHT(cb, cs) (cs <= 0.5 ? KINGLULU_MULTIPLY(cb, 2 * cs) : KINGLULU_SCREEN(cb, (2 * cs - 1)))
 #define KINGLULU_OVERLAY(cb, cs) KINGLULU_HARDLIGHT(cs, cb)
@@ -766,25 +766,25 @@ int kinglulu_color_cmp(const void *a, const void *b);
 KingLuluColor
 kinglulu_set_lum(KingLuluColor c, double l)
 {
-    double lc = KINGLULU_LUM(c);
-    double d = l - lc;
+    double d = l - KINGLULU_LUM(c);
     c.r += d;
     c.g += d;
     c.b += d;
-
+    
+    l = KINGLULU_LUM(c);
     double n = MIN(MIN(c.r, c.g), c.b);
     double x = MAX(MAX(c.r, c.g), c.b);
     if (n < 0.0)
     {
-        c.r = lc + (((c.r - lc) * lc) / (lc - n));
-        c.g = lc + (((c.g - lc) * lc) / (lc - n));
-        c.b = lc + (((c.b - lc) * lc) / (lc - n));
+        c.r = l + (((c.r - l) * l) / (l - n));
+        c.g = l + (((c.g - l) * l) / (l - n));
+        c.b = l + (((c.b - l) * l) / (l - n));
     }
     if (x > 1.0)
     {
-        c.r = lc + (((c.r - lc) * (1 - lc)) / (x - lc));
-        c.g = lc + (((c.g - lc)  * (1 - lc)) / (x - lc));
-        c.b = lc + (((c.b - lc)  * (1 - lc)) / (x - lc));
+        c.r = l + (((c.r - l) * (1 - l)) / (x - l));
+        c.g = l + (((c.g - l)  * (1 - l)) / (x - l));
+        c.b = l + (((c.b - l)  * (1 - l)) / (x - l));
     }
     return c;
 }
