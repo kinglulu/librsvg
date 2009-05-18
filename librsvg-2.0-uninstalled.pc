@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: librsvg
+Description: library that renders svg files
+Version: 2.22.3
+Requires: glib-2.0 gdk-pixbuf-2.0
+Libs: ${pc_top_builddir}/${pcfiledir}/librsvg-2.la
+Cflags: -I${pc_top_builddir}/${pcfiledir}

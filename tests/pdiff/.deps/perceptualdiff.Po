@@ -1,0 +1,47 @@
+perceptualdiff.o perceptualdiff.o: perceptualdiff.c ../../config.h \
+  /usr/include/stdio.h /usr/include/_types.h /usr/include/sys/_types.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdint.h \
+  /usr/include/string.h /usr/include/math.h \
+  /usr/include/architecture/i386/math.h lpyramid.h args.h pdiff.h \
+  /opt/local/include/cairo/cairo.h \
+  /opt/local/include/cairo/cairo-version.h \
+  /opt/local/include/cairo/cairo-features.h \
+  /opt/local/include/cairo/cairo-deprecated.h
+
+../../config.h:
+
+/usr/include/stdio.h:
+
+/usr/include/_types.h:
+
+/usr/include/sys/_types.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/machine/_types.h:
+
+/usr/include/i386/_types.h:
+
+/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdint.h:
+
+/usr/include/string.h:
+
+/usr/include/math.h:
+
+/usr/include/architecture/i386/math.h:
+
+lpyramid.h:
+
+args.h:
+
+pdiff.h:
+
+/opt/local/include/cairo/cairo.h:
+
+/opt/local/include/cairo/cairo-version.h:
+
+/opt/local/include/cairo/cairo-features.h:
+
+/opt/local/include/cairo/cairo-deprecated.h:

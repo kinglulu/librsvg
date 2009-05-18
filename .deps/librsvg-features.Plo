@@ -1,0 +1,4 @@
+librsvg-features.lo librsvg-features.o: librsvg-features.c \
+  librsvg-features.h
+
+librsvg-features.h:
